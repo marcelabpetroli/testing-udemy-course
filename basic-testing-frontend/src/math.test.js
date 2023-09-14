@@ -32,6 +32,7 @@ it("should yield a correct sum if and array of numeric string values is provided
 
   expect(result).toBe(expectedResult);
 });
+
 it("should yield 0 if and empty array is provided", () => {
   const numbers = [];
 
@@ -57,4 +58,5 @@ it("should throw an error if provided with multiple arguments instead of an arra
   };
 
   expect(resultFn).toThrow();
+  expect(resultFn).toThrow(/is not iterable/);
 });
