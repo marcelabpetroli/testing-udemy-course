@@ -8,6 +8,10 @@ beforeEach(() => {
   user = new User(testEmail);
 });
 
+// describe.concurrent();
+// Executes all test in parallel
+// Downside: tests that perform clashing (global) state manipulations may interfere with each other
+
 it("should update the email", () => {
   const newTestEmail = "test2@test.com";
 
