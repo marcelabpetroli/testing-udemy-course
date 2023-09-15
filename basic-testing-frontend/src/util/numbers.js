@@ -1,16 +1,17 @@
-import { cleanNumbers, add } from "../math.js";
+import { validateNumber, validateStringNotEmpty } from "./validation.js";
 
 export function transformToNumber(value) {
   return +value;
 }
 
-export function calculateResult(numberValues) {
-  let result;
-  try {
-    const numbers = cleanNumbers(numberValues);
-    result = add(numbers).toString();
-  } catch (error) {
-    result = error.message;
+export function cleanNumbers(numberValues) {
+  const numbers = [];
+  for (const num of numberValues) {
+    validateStringNotEmpty(num);
+    const number = transformToNumber(num);
+    validateNumber(number);
+    numbers.push(number);
   }
-  return result;
+
+  return numbers;
 }

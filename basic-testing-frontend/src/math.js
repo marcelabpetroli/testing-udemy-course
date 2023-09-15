@@ -1,5 +1,4 @@
-import { validateNumber, validateStringNotEmpty } from "./util/validation.js";
-import { transformToNumber } from "./util/numbers.js";
+import { cleanNumbers } from "./util/numbers.js";
 
 export function add(numbers) {
   let sum = 0;
@@ -10,14 +9,13 @@ export function add(numbers) {
   return sum;
 }
 
-export function cleanNumbers(numberValues) {
-  const numbers = [];
-  for (const num of numberValues) {
-    validateStringNotEmpty(num);
-    const number = transformToNumber(num);
-    validateNumber(number);
-    numbers.push(number);
+export function calculateResult(numberValues) {
+  let result;
+  try {
+    const numbers = cleanNumbers(numberValues);
+    result = add(numbers).toString();
+  } catch (error) {
+    result = error.message;
   }
-
-  return numbers;
+  return result;
 }
